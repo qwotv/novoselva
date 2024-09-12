@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AvaloniaApplication2.ViewModels"
+			 xmlns:m="using:AvaloniaApplication2.Models"
+
+		     x:DataType="vm:EmployeesPageViewModel"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication2.Views.EmployeesPage">
+
+	<Design.DataContext>
+		<vm:EmployeesPageViewModel></vm:EmployeesPageViewModel>
+	</Design.DataContext>
+	<Grid>
+		<DockPanel>
+			<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+				<Button Margin="5" Command="{Binding Add}" Content="Добавить"></Button>
+				<Button Margin="5" Command="{Binding Remove}" Content="Удалить"></Button>
+				<Button Margin="5" Command="{Binding Save}" Content="Сохранить"></Button>
+				<Button Margin="5" Command="{Binding Update}" Content="Обновить"></Button>
+				<Button Margin="5" Command="{Binding Export}" Content="Экспорт"></Button>
+
+			</StackPanel>
+
+			<StackPanel Width="200" Height="250" DockPanel.Dock="Right">
+				<TextBlock Text="ФИО"></TextBlock>
+				<TextBox Text="{Binding SelectedEmployee.Name}"></TextBox>
+				<TextBlock Text="Должность"></TextBlock>
+				<TextBox Text="{Binding SelectedEmployee.Post}"></TextBox>
+			</StackPanel>
+
+			<ListBox SelectedItem ="{Binding SelectedEmployee}" ItemsSource="{Binding Employees}">
+				<ListBox.DataTemplates>
+					<DataTemplate x:DataType="m:Employee" >
+						<StackPanel>
+							<TextBlock Text="{Binding Name}"/>
+							<TextBlock Text="{Binding Post}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.DataTemplates>
+			</ListBox>
+		</DockPanel>
+	</Grid>
+</UserControl>

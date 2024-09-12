@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AvaloniaApplication2.ViewModels"
+             xmlns:m="using:AvaloniaApplication2.Models"
+		     x:DataType="vm:GoodsPageViewModel"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication2.Views.GoodsPage">
+	<Design.DataContext>
+		<vm:GoodsPageViewModel></vm:GoodsPageViewModel>
+	</Design.DataContext>
+	<Grid>
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top"  Orientation="Horizontal">
+		<Button Margin="5" Command="{Binding Add}" Content="Добавить"></Button>
+		<Button Margin="5" Command="{Binding Remove}" Content="Удалить"></Button>
+		<Button Margin="5" Command="{Binding Save}" Content="Сохранить"></Button>
+		<Button Margin="5" Command="{Binding Update}" Content="Обновить"></Button>
+		<Button Margin="5" Command="{Binding Export}" Content="Экспорт"></Button>
+		<Button Margin="5" Command="{Binding GetCard}" Content="Карточка"></Button>
+
+		</StackPanel>
+
+		<StackPanel Width="200"  DockPanel.Dock="Right">
+			<TextBlock Text="Название"></TextBlock>
+			<TextBox Text="{Binding SelectedGood.Name}"></TextBox>
+			<TextBlock Text="Цена"></TextBlock>
+			<NumericUpDown Value="{Binding SelectedGood.Price}"></NumericUpDown>
+
+		</StackPanel>
+		<ListBox SelectedItem ="{Binding SelectedGood}" ItemsSource="{Binding Goods}">
+			<ListBox.DataTemplates>
+				<DataTemplate x:DataType="m:Good" >
+					<StackPanel>
+						<TextBlock Text="{Binding Name}"/>
+						<TextBlock Text="{Binding Price}"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.DataTemplates>
+		</ListBox>
+	</DockPanel>
+	</Grid>
+
+</UserControl>
